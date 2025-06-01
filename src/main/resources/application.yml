@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    context-path: /
 
 spring:
   datasource:
@@ -7,7 +9,6 @@ spring:
     url: jdbc:mysql://localhost:3306/twohand?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: yxy3307234
-
   data:
     redis:
       host: localhost
@@ -17,17 +18,18 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
+      max-file-size: 4MB
+      max-request-size: 4MB
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:/mapper/**/*.xml
   type-aliases-package: com.secondhand.model.entity
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
+      id-type: auto
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
